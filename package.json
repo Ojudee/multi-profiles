@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "tsx server.ts",
-    "build": "vite build && rm -rf docs && cp -r dist docs",
+    "build": "vite build && node -e \"const fs=require('fs'); let h=fs.readFileSync('dist/index.html','utf8'); h=h.replace(/<script id=\\\"gh-redirect\\\">[\\s\\S]*?<\\/script>\\s*/, ''); fs.writeFileSync('dist/index.html', h);\" && rm -rf docs && cp -r dist docs && rm -rf assets && cp -r dist/assets assets",
     "start": "tsx server.ts",
     "preview": "vite preview",
     "clean": "rm -rf dist server.js",

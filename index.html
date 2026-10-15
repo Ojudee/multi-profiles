@@ -10,6 +10,20 @@
     <meta property="og:description" content="Multi-organizational HR and corporate accounts portal for Univision design and Construction Ltd. with staff credentials inventory, subcontractor payment stages, and financial audit controls." />
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
+    <script id="gh-redirect">
+      (function() {
+        try {
+          var l = window.location;
+          var isGithubPages = l.hostname.endsWith('github.io');
+          if (isGithubPages && !l.pathname.includes('/docs/')) {
+            var segments = l.pathname.split('/').filter(Boolean);
+            var repo = segments.length > 0 ? segments[0] : '';
+            var target = repo ? '/' + repo + '/docs/' : '/docs/';
+            l.replace(target + l.search + l.hash);
+          }
+        } catch (e) {}
+      })();
+    </script>
     <script>
       try {
         // 1. GitHub Pages SPA redirect decoder (from 404.html)
@@ -82,21 +96,6 @@
   </head>
   <body>
     <div id="root"></div>
-    <script>
-      (function() {
-        try {
-          var isGithubPages = window.location.hostname.endsWith('github.io');
-          if (isGithubPages && !window.location.pathname.includes('/docs/')) {
-            var rawScript = document.querySelector('script[src*="/src/main.tsx"]');
-            if (rawScript) {
-              var repo = window.location.pathname.split('/').filter(Boolean)[0] || '';
-              var target = repo ? '/' + repo + '/docs/' : '/docs/';
-              window.location.replace(target + window.location.search + window.location.hash);
-            }
-          }
-        } catch (e) {}
-      })();
-    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
