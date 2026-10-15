@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>Univision design and Construction Ltd. - HR &amp; Accounts Portal</title>
+    <meta name="description" content="Multi-organizational HR and corporate accounts portal for Univision design and Construction Ltd. with staff credentials inventory, subcontractor payment stages, and financial audit controls." />
+    <meta property="og:title" content="Univision design and Construction Ltd. - HR &amp; Accounts Portal" />
+    <meta property="og:description" content="Multi-organizational HR and corporate accounts portal for Univision design and Construction Ltd. with staff credentials inventory, subcontractor payment stages, and financial audit controls." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <script>
+      try {
+        // 1. GitHub Pages SPA redirect decoder (from 404.html)
+        (function(l) {
+          if (l.search && (l.search[1] === '/' || l.search.indexOf('p=') !== -1)) {
+            var decoded = l.search.slice(1).split('&').map(function(s) { 
+              return s.replace(/~and~/g, '&');
+            }).reverse().reduce(function(acc, val) {
+              var parts = val.split('=');
+              if (parts[0] === 'p') acc.p = decodeURIComponent(parts[1] || '');
+              if (parts[0] === 'q') acc.q = decodeURIComponent(parts[1] || '');
+              if (parts[0] === 'h') acc.h = decodeURIComponent(parts[1] || '');
+              return acc;
+            }, {});
+            if (decoded.p !== undefined) {
+              var basePath = l.pathname.endsWith('/') ? l.pathname.slice(0, -1) : l.pathname;
+              window.history.replaceState(null, null,
+                basePath + (decoded.p ? '/' + decoded.p : '') +
+                (decoded.q ? '?' + decoded.q : '') +
+                (decoded.h ? '#' + decoded.h : '')
+              );
+            }
+          }
+          // 2. Ensure trailing slash on GitHub Pages repo subpath so relative './assets/...' load correctly
+          if (l.pathname && !l.pathname.endsWith('/') && !l.pathname.split('/').pop().includes('.')) {
+            l.replace(l.pathname + '/' + l.search + l.hash);
+          }
+        })(window.location);
+      } catch (err) {
+        console.warn('Navigation check note:', err);
+      }
+    </script>
+    <script>
+      (function() {
+        // Suppress benign Vite dev server HMR websocket notices in cloud iframe sandbox
+        function isWsError(err) {
+          if (!err) return false;
+          var str = (err.message || err.reason || err.stack || String(err)).toLowerCase();
+          return str.indexOf('websocket') !== -1 || str.indexOf('failed to connect') !== -1;
+        }
+
+        window.addEventListener('unhandledrejection', function(event) {
+          if (isWsError(event.reason)) {
+            event.preventDefault();
+            event.stopImmediatePropagation();
+            return false;
+          }
+        }, true);
+
+        window.addEventListener('error', function(event) {
+          if (isWsError(event.error || event.message)) {
+            event.preventDefault();
+            event.stopImmediatePropagation();
+            return false;
+          }
+        }, true);
+
+        // Filter out Vite client websocket noise from console
+        var origConsoleError = console.error;
+        console.error = function() {
+          var args = Array.prototype.slice.call(arguments);
+          var joined = args.map(function(a) { return String(a && a.message ? a.message : a); }).join(' ');
+          if (isWsError(joined)) {
+            return;
+          }
+          return origConsoleError.apply(console, args);
+        };
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script>
+      (function() {
+        try {
+          var isGithubPages = window.location.hostname.endsWith('github.io');
+          if (isGithubPages && !window.location.pathname.includes('/docs/')) {
+            var rawScript = document.querySelector('script[src*="/src/main.tsx"]');
+            if (rawScript) {
+              var repo = window.location.pathname.split('/').filter(Boolean)[0] || '';
+              var target = repo ? '/' + repo + '/docs/' : '/docs/';
+              window.location.replace(target + window.location.search + window.location.hash);
+            }
+          }
+        } catch (e) {}
+      })();
+    </script>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+
