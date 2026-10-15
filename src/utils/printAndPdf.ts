@@ -100,18 +100,40 @@ export async function generateAndDownloadPdf(
       const noPrintElements = clonedEl.querySelectorAll<HTMLElement>('.no-print');
       noPrintElements.forEach((np) => np.remove());
 
-      // Ensure TIN Certificate is scaled as half A4 box
-      const tinBoxes = clonedEl.querySelectorAll<HTMLElement>('.tin-certificate-container');
-      tinBoxes.forEach((box) => {
-        box.style.overflow = 'visible';
-        box.style.maxHeight = 'none';
-        box.style.height = 'auto';
+      // Configure ID Card frames in clone for exact statutory ISO 7810 ID-1 (85.6mm x 53.98mm) proportions
+      const idFrames = clonedEl.querySelectorAll<HTMLElement>('.id-card-frame');
+      idFrames.forEach((frame) => {
+        frame.style.width = '100%';
+        frame.style.aspectRatio = '85.6 / 53.98';
+        frame.style.height = 'auto';
+        frame.style.maxHeight = 'none';
+        frame.style.overflow = 'hidden';
+        const img = frame.querySelector<HTMLImageElement>('img');
+        if (img) {
+          img.style.width = '100%';
+          img.style.height = '100%';
+          img.style.objectFit = 'cover';
+          img.style.objectPosition = 'center';
+          img.style.display = 'block';
+        }
       });
 
-      const allImages = clonedEl.querySelectorAll<HTMLImageElement>('img');
-      allImages.forEach((img) => {
-        img.style.objectFit = 'contain';
-        img.style.display = 'block';
+      // Configure TIN Certificate in clone for exact Half-A4 (210mm x 148.5mm, 1.414:1) dimensions
+      const tinFrames = clonedEl.querySelectorAll<HTMLElement>('.tin-certificate-frame');
+      tinFrames.forEach((frame) => {
+        frame.style.width = '100%';
+        frame.style.aspectRatio = '210 / 148.5';
+        frame.style.height = 'auto';
+        frame.style.maxHeight = 'none';
+        frame.style.overflow = 'hidden';
+        const img = frame.querySelector<HTMLImageElement>('img');
+        if (img) {
+          img.style.width = '100%';
+          img.style.height = '100%';
+          img.style.objectFit = 'contain';
+          img.style.objectPosition = 'center';
+          img.style.display = 'block';
+        }
       });
 
       // Ensure all images are preloaded and SVGs converted to solid high-res bitmaps
@@ -354,14 +376,14 @@ function buildStandaloneDossierHtml(
     .image-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin-bottom: 10px;
+      gap: 12px;
+      margin-bottom: 12px;
     }
     .image-card {
       border: 1px solid #cbd5e1;
       background: #f8fafc;
       padding: 6px;
-      border-radius: 4px;
+      border-radius: 6px;
     }
     .image-title {
       font-size: 9px;
@@ -372,9 +394,9 @@ function buildStandaloneDossierHtml(
     }
     .image-card img {
       width: 100%;
-      height: 180px;
-      max-height: 180px;
-      object-fit: contain;
+      aspect-ratio: 85.6 / 53.98;
+      height: auto;
+      object-fit: cover;
       object-position: center;
       border: 1px solid #cbd5e1;
       background: #ffffff;
@@ -382,12 +404,12 @@ function buildStandaloneDossierHtml(
       display: block;
     }
 
-    /* Half-A4 TIN Certificate Styling: exactly half the size of A4 paper */
+    /* Half-A4 TIN Certificate Styling: exactly half the size of A4 paper (210mm x 148.5mm, 1.414:1) */
     .tin-image-card {
       border: 1px solid #cbd5e1;
       background: #f8fafc;
       padding: 8px;
-      border-radius: 4px;
+      border-radius: 6px;
       margin-top: 8px;
       margin-bottom: 12px;
       page-break-inside: avoid;
@@ -396,8 +418,9 @@ function buildStandaloneDossierHtml(
     }
     .tin-image-card img {
       width: 100%;
-      height: 135mm; /* Half of A4 (297mm) */
-      max-height: 140mm;
+      aspect-ratio: 210 / 148.5;
+      height: auto;
+      max-height: 520px;
       object-fit: contain;
       object-position: center;
       border: 1px solid #cbd5e1;
@@ -405,14 +428,6 @@ function buildStandaloneDossierHtml(
       border-radius: 4px;
       display: block;
     }
-    @media screen {
-      .tin-image-card img {
-        height: auto;
-        min-height: 380px;
-        max-height: 500px;
-      }
-    }
-
     .two-col {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -460,6 +475,26 @@ function buildStandaloneDossierHtml(
       }
       .no-print {
         display: none !important;
+      }
+      .image-grid {
+        gap: 6mm !important;
+        margin-bottom: 6mm !important;
+      }
+      .image-card img {
+        width: 100% !important;
+        height: 56.75mm !important;
+        max-height: 57mm !important;
+        aspect-ratio: 85.6 / 53.98 !important;
+        object-fit: cover !important;
+        object-position: center !important;
+      }
+      .tin-image-card img {
+        width: 100% !important;
+        height: 135mm !important;
+        max-height: 135mm !important;
+        aspect-ratio: 210 / 148.5 !important;
+        object-fit: contain !important;
+        object-position: center !important;
       }
     }
   </style>

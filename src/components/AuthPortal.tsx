@@ -34,9 +34,6 @@ import { verifyPassword, sha256Hex } from '../utils/security';
 import {
   sendEmailVerificationCode,
   sendSmsOtpCode,
-  getMobileSmsUri,
-  getWhatsAppUri,
-  getMailClientUri,
 } from '../utils/notificationService';
 
 interface AuthPortalProps {
@@ -602,24 +599,9 @@ export const AuthPortal: React.FC<AuthPortalProps> = ({
                 />
               </div>
 
-              {/* Secure multi-channel receipt options - code is NOT displayed on screen */}
-              <div className="flex flex-wrap items-center justify-center gap-2 pt-1 text-[11px]">
-                <a
-                  href={getMobileSmsUri(phoneNumber, generatedOtp || '')}
-                  className="inline-flex items-center gap-1.5 text-blue-700 hover:text-blue-800 bg-blue-50 hover:bg-blue-100 px-3 py-1.5 rounded-lg border border-blue-200 font-semibold transition shadow-xs"
-                >
-                  <Smartphone className="w-3.5 h-3.5" />
-                  <span>Receive on Phone SMS App</span>
-                </a>
-                <a
-                  href={getWhatsAppUri(phoneNumber, generatedOtp || '')}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-emerald-700 hover:text-emerald-800 bg-emerald-50 hover:bg-emerald-100 px-3 py-1.5 rounded-lg border border-emerald-200 font-semibold transition shadow-xs"
-                >
-                  <MessageSquare className="w-3.5 h-3.5" />
-                  <span>Receive via WhatsApp</span>
-                </a>
+              {/* Secure Delivery Notice: Codes are delivered privately via mobile SMS & email (never displayed or leaked in redirect URLs) */}
+              <div className="bg-slate-50 border border-slate-200 rounded-xl p-3 text-center text-[11px] text-slate-600">
+                <span className="font-semibold text-slate-800">Direct Security Delivery:</span> A single-use 6-digit OTP has been dispatched to your mobile number and registered email. Please enter the 6 digits above to proceed.
               </div>
 
               <div className="flex items-center justify-between text-xs text-slate-500">
@@ -696,15 +678,9 @@ export const AuthPortal: React.FC<AuthPortalProps> = ({
                 />
               </div>
 
-              {/* Secure mail delivery helper - code is NOT displayed on screen */}
-              <div className="flex items-center justify-center pt-1 text-[11px]">
-                <a
-                  href={getMailClientUri(signupEmail, generatedEmailCode || '', signupOrgName || 'Univision')}
-                  className="inline-flex items-center gap-1.5 text-emerald-700 hover:text-emerald-800 bg-emerald-50 hover:bg-emerald-100 px-3.5 py-1.5 rounded-lg border border-emerald-200 font-semibold transition shadow-xs"
-                >
-                  <Mail className="w-3.5 h-3.5" />
-                  <span>Open in Mail App</span>
-                </a>
+              {/* Secure Delivery Notice */}
+              <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-3 text-center text-[11px] text-emerald-800">
+                <span className="font-semibold">Inbox Delivery:</span> Please check your email inbox and spam folder for the 6-digit confirmation code.
               </div>
 
               <div className="flex items-center justify-between text-xs text-slate-500">

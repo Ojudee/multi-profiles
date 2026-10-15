@@ -58,6 +58,8 @@ import {
   AlertCircle,
   FileText,
   Crown,
+  Scan,
+  Scaling,
 } from 'lucide-react';
 
 interface DocumentViewerProps {
@@ -169,6 +171,10 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
 
   // Quick auto-resizing in-flight tracker
   const [isQuickAutoResizing, setIsQuickAutoResizing] = useState<string | null>(null);
+
+  // Statutory ID Card & TIN Certificate fitting modes ('cover' = Edge-to-Edge Statutory Fit, 'contain' = Full Margin Scan)
+  const [idFitMode, setIdFitMode] = useState<'cover' | 'contain'>('cover');
+  const [tinFitMode, setTinFitMode] = useState<'cover' | 'contain'>('contain');
 
   // AI Document Scanner Modal state
   const [scannerModal, setScannerModal] = useState<{
@@ -1091,21 +1097,30 @@ Generated: ${partner.generatedDate}
                     <h2 className="text-sm sm:text-base font-serif font-bold text-slate-950">
                       Biometric Identity Documents (ID Front &amp; Back)
                     </h2>
-                    <span className="text-[10px] sm:text-[11px] text-slate-500 font-sans ml-auto">
-                      (High-Resolution Statutory Cards)
+                    <span className="text-[10px] sm:text-[11px] text-slate-500 font-sans ml-auto hidden sm:inline">
+                      (Statutory ISO/IEC 7810 ID-1 Standard • 85.60 × 53.98 mm)
                     </span>
+                    <button
+                      type="button"
+                      onClick={() => setIdFitMode((m) => (m === 'cover' ? 'contain' : 'cover'))}
+                      className="no-print ml-auto sm:ml-2 px-2 py-0.5 bg-white hover:bg-slate-100 text-slate-700 border border-slate-300 rounded font-semibold inline-flex items-center gap-1 shadow-2xs transition text-[10px]"
+                      title="Toggle between Edge-to-Edge Statutory Fit and Margin Contain"
+                    >
+                      <Scan className="w-3 h-3 text-blue-700" />
+                      <span>Fit: {idFitMode === 'cover' ? 'Statutory Fill (Edge-to-Edge)' : 'Contain Margin'}</span>
+                    </button>
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-2.5">
                     {/* ID Front */}
-                    <div className="image-attachment-card avoid-break border border-slate-300 rounded p-2 bg-slate-50/70 flex flex-col justify-between print:p-1.5 print:break-inside-avoid">
+                    <div className="image-attachment-card avoid-break border border-slate-300 rounded-lg p-2 bg-slate-50/70 flex flex-col justify-between print:p-1.5 print:break-inside-avoid">
                       <div>
                         <div className="flex items-center justify-between mb-1">
                           <span className="text-[10px] font-bold text-slate-800 uppercase tracking-wider">
                             Attached: ID Front Image
                           </span>
                           <span className="text-[9px] bg-blue-100 text-blue-900 px-1.5 py-0.5 rounded font-mono font-bold">
-                            PRIMARY ID
+                            PRIMARY ID (85.6 × 54mm)
                           </span>
                         </div>
                         {partner.idFrontImage ? (
@@ -1118,12 +1133,12 @@ Generated: ${partner.generatedDate}
                                 partnerId: partner.id,
                               })
                             }
-                            className="group relative cursor-pointer rounded border border-slate-300 bg-white flex items-center justify-center w-full aspect-[85/54] max-h-48 print:max-h-28 overflow-hidden transition hover:border-blue-500 shadow-2xs"
+                            className="id-card-frame group relative cursor-pointer rounded-lg border border-slate-300 bg-slate-100 flex items-center justify-center w-full aspect-[85.6/53.98] print:h-[56.75mm] print:max-h-[57mm] overflow-hidden transition hover:border-blue-500 shadow-2xs"
                           >
                             <img
                               src={partner.idFrontImage}
                               alt="ID Front Image"
-                              className="w-full h-full object-contain object-center"
+                              className={`w-full h-full ${idFitMode === 'cover' ? 'object-cover' : 'object-contain'} object-center transition-all duration-200`}
                             />
                             <div className="no-print absolute inset-0 bg-slate-900/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center text-white text-[10px] font-semibold gap-1">
                               <ZoomIn className="w-3.5 h-3.5" />
@@ -1160,9 +1175,10 @@ Generated: ${partner.generatedDate}
                             onClick={() => handleQuickAutoResize(partner, 'idFront')}
                             disabled={isQuickAutoResizing === `${partner.id}-idFront`}
                             className="px-1.5 py-0.5 bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 rounded font-medium flex items-center gap-1 shadow-2xs transition"
+                            title="Auto-scales to crisp standard 85.6 x 53.98 mm format"
                           >
                             <Maximize2 className="w-3 h-3 text-blue-600" />
-                            Auto-Fit
+                            Auto-Fit (85.6×54mm)
                           </button>
                           <button
                             type="button"
@@ -1177,7 +1193,7 @@ Generated: ${partner.generatedDate}
                     </div>
 
                     {/* ID Back */}
-                    <div className="image-attachment-card avoid-break border border-slate-300 rounded p-2 bg-slate-50/70 flex flex-col justify-between print:p-1.5 print:break-inside-avoid">
+                    <div className="image-attachment-card avoid-break border border-slate-300 rounded-lg p-2 bg-slate-50/70 flex flex-col justify-between print:p-1.5 print:break-inside-avoid">
                       <div>
                         <div className="flex items-center justify-between mb-1">
                           <span className="text-[10px] font-bold text-slate-800 uppercase tracking-wider">
@@ -1197,12 +1213,12 @@ Generated: ${partner.generatedDate}
                                 partnerId: partner.id,
                               })
                             }
-                            className="group relative cursor-pointer rounded border border-slate-300 bg-white flex items-center justify-center w-full aspect-[85/54] max-h-48 print:max-h-28 overflow-hidden transition hover:border-blue-500 shadow-2xs"
+                            className="id-card-frame group relative cursor-pointer rounded-lg border border-slate-300 bg-slate-100 flex items-center justify-center w-full aspect-[85.6/53.98] print:h-[56.75mm] print:max-h-[57mm] overflow-hidden transition hover:border-blue-500 shadow-2xs"
                           >
                             <img
                               src={partner.idBackImage}
                               alt="ID Back Image"
-                              className="w-full h-full object-contain object-center"
+                              className={`w-full h-full ${idFitMode === 'cover' ? 'object-cover' : 'object-contain'} object-center transition-all duration-200`}
                             />
                             <div className="no-print absolute inset-0 bg-slate-900/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center text-white text-[10px] font-semibold gap-1">
                               <ZoomIn className="w-3.5 h-3.5" />
@@ -1239,9 +1255,10 @@ Generated: ${partner.generatedDate}
                             onClick={() => handleQuickAutoResize(partner, 'idBack')}
                             disabled={isQuickAutoResizing === `${partner.id}-idBack`}
                             className="px-1.5 py-0.5 bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 rounded font-medium flex items-center gap-1 shadow-2xs transition"
+                            title="Auto-scales to crisp standard 85.6 x 53.98 mm format"
                           >
                             <Maximize2 className="w-3 h-3 text-blue-600" />
-                            Auto-Fit
+                            Auto-Fit (85.6×54mm)
                           </button>
                           <button
                             type="button"
@@ -1371,13 +1388,22 @@ Generated: ${partner.generatedDate}
                     <h2 className="text-sm sm:text-base font-serif font-bold text-slate-950">
                       Attached GRA Taxpayer Identification Number (TIN) Certificate
                     </h2>
-                    <span className="text-[9px] bg-blue-100 text-blue-900 px-2 py-0.5 rounded font-mono font-bold ml-auto">
-                      HALF A4 DOCUMENT SCALE
+                    <span className="text-[9px] bg-blue-100 text-blue-900 px-2 py-0.5 rounded font-mono font-bold ml-auto hidden sm:inline">
+                      EXACT HALF A4 SCALE (210 × 148.5 mm • 135mm Print Height)
                     </span>
+                    <button
+                      type="button"
+                      onClick={() => setTinFitMode((m) => (m === 'cover' ? 'contain' : 'cover'))}
+                      className="no-print ml-auto sm:ml-2 px-2 py-0.5 bg-white hover:bg-slate-100 text-slate-700 border border-slate-300 rounded font-semibold inline-flex items-center gap-1 shadow-2xs transition text-[10px]"
+                      title="Toggle between Scale Contain and Edge-to-Edge Fill"
+                    >
+                      <Scaling className="w-3 h-3 text-blue-700" />
+                      <span>Fit: {tinFitMode === 'cover' ? 'Fill Frame (Cover)' : 'Full Certificate (Contain)'}</span>
+                    </button>
                   </div>
 
                   {/* PROMINENT HALF-A4 DOCUMENT CARD (Exactly Half Size of A4 Paper) */}
-                  <div className="border border-slate-300 rounded p-2.5 bg-slate-50/80">
+                  <div className="border border-slate-300 rounded-lg p-2.5 bg-slate-50/80">
                     <div className="flex items-center justify-between mb-2">
                       <div className="flex items-center gap-2">
                         <Receipt className="w-4 h-4 text-blue-800" />
@@ -1391,7 +1417,7 @@ Generated: ${partner.generatedDate}
                     </div>
 
                     {partner.tinCertificateImage ? (
-                      /* Half-A4 Display Box: aspect ratio ~1.414:1, min-height 420px, exact 135mm print height */
+                      /* Half-A4 Display Box: aspect ratio ~1.414:1, exact 135mm print height */
                       <div
                         onClick={() =>
                           setLightboxImage({
@@ -1401,12 +1427,12 @@ Generated: ${partner.generatedDate}
                             partnerId: partner.id,
                           })
                         }
-                        className="group relative cursor-pointer rounded border border-slate-300 bg-white flex items-center justify-center w-full min-h-[380px] sm:min-h-[440px] max-h-[540px] aspect-[1.414/1] print:h-[135mm] print:max-h-[140mm] print:w-full overflow-hidden transition hover:border-blue-500 shadow-sm"
+                        className="tin-certificate-frame group relative cursor-pointer rounded-lg border border-slate-300 bg-white flex items-center justify-center w-full aspect-[210/148.5] print:h-[135mm] print:max-h-[135mm] print:w-full overflow-hidden transition hover:border-blue-500 shadow-sm"
                       >
                         <img
                           src={partner.tinCertificateImage}
                           alt="TIN Certificate Image"
-                          className="w-full h-full object-contain object-center"
+                          className={`w-full h-full ${tinFitMode === 'cover' ? 'object-cover' : 'object-contain'} object-center transition-all duration-200`}
                         />
                         <div className="no-print absolute inset-0 bg-slate-900/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center text-white text-xs font-semibold gap-1.5">
                           <ZoomIn className="w-4 h-4" />
@@ -1415,7 +1441,7 @@ Generated: ${partner.generatedDate}
                       </div>
                     ) : (
                       <label className="h-56 sm:h-64 border-2 border-dashed border-slate-300 rounded flex flex-col items-center justify-center text-slate-500 text-xs cursor-pointer hover:border-blue-500 hover:bg-white transition p-4 text-center">
-                        <Upload className="w-6 h-6 text-blue-600 mb-2" />
+                        <Upload className="w-4 h-4 text-blue-600 mb-2" />
                         <span className="font-bold text-slate-800 text-sm">Attach GRA TIN Certificate (Half A4)</span>
                         <span className="text-[11px] text-slate-400 mt-1">Upload scanned GRA tax registration document</span>
                         <input
@@ -1439,7 +1465,7 @@ Generated: ${partner.generatedDate}
                     {partner.tinCertificateImage && (
                       <div className="no-print mt-2 flex items-center justify-between gap-1 pt-1.5 border-t border-slate-200 text-xs">
                         <span className="text-[11px] text-slate-500 font-sans">
-                          Half A4 paper scale verified. Prints crisp and legible on A4 sheet.
+                          Half A4 paper scale verified (135mm height on A4). Prints crisp and legible on A4 sheet.
                         </span>
                         <div className="flex items-center gap-1.5">
                           <button

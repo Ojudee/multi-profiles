@@ -189,31 +189,3 @@ export async function sendSmsOtpCode(params: SendSmsParams): Promise<DeliveryRes
       : `Security 2FA OTP code dispatched to ${targetPhone}.`,
   };
 }
-
-/**
- * Generate URI for mobile SMS app dispatch
- */
-export function getMobileSmsUri(phone: string, code: string): string {
-  const cleanPhone = phone.replace(/[^0-9+]/g, '');
-  const body = encodeURIComponent(`Univision Security: Your 2FA OTP verification code is ${code}. Valid for 10 minutes.`);
-  return `sms:${cleanPhone}?body=${body}`;
-}
-
-/**
- * Generate URI for WhatsApp dispatch
- */
-export function getWhatsAppUri(phone: string, code: string): string {
-  const cleanPhone = phone.replace(/[^0-9]/g, '');
-  const text = encodeURIComponent(`Univision Security: Your 2FA OTP verification code is ${code}. Valid for 10 minutes.`);
-  return `https://api.whatsapp.com/send?phone=${cleanPhone}&text=${text}`;
-}
-
-/**
- * Generate URI for opening default email client
- */
-export function getMailClientUri(email: string, code: string, orgName = 'Univision'): string {
-  const cleanEmail = email.trim();
-  const subject = encodeURIComponent(`${orgName} Verification Code: ${code}`);
-  const body = encodeURIComponent(`Your Univision Security verification code is: ${code}\n\nValid for 10 minutes.`);
-  return `mailto:${cleanEmail}?subject=${subject}&body=${body}`;
-}
