@@ -1511,7 +1511,7 @@ Generated: ${partner.generatedDate}
                                 partnerId: partner.id,
                               })
                             }
-                            className="id-card-frame group relative cursor-pointer rounded-lg border border-slate-300 bg-white flex items-center justify-center w-full aspect-[85.6/53.98] print:max-h-none overflow-hidden transition hover:border-blue-500 shadow-2xs"
+                            className="id-card-frame group relative cursor-pointer rounded-lg border border-slate-300 bg-white flex items-center justify-center w-full aspect-[85.6/53.98] print:h-[38mm] print:max-h-[40mm] overflow-hidden transition hover:border-blue-500 shadow-2xs"
                           >
                             <img
                               src={partner.idFrontImage}
@@ -1591,7 +1591,7 @@ Generated: ${partner.generatedDate}
                                 partnerId: partner.id,
                               })
                             }
-                            className="id-card-frame group relative cursor-pointer rounded-lg border border-slate-300 bg-white flex items-center justify-center w-full aspect-[85.6/53.98] print:max-h-none overflow-hidden transition hover:border-blue-500 shadow-2xs"
+                            className="id-card-frame group relative cursor-pointer rounded-lg border border-slate-300 bg-white flex items-center justify-center w-full aspect-[85.6/53.98] print:h-[38mm] print:max-h-[40mm] overflow-hidden transition hover:border-blue-500 shadow-2xs"
                           >
                             <img
                               src={partner.idBackImage}
@@ -1741,12 +1741,12 @@ Generated: ${partner.generatedDate}
                         onClick={() =>
                           setLightboxImage({
                             src: partner.tinCertificateImage!,
-                            title: `${partner.name} - GRA TIN Certificate (Half A4 Paper Scale)`,
+                            title: `${partner.name} - GRA TIN Certificate`,
                             slot: 'tinCertificate',
                             partnerId: partner.id,
                           })
                         }
-                        className="tin-certificate-frame group relative cursor-pointer rounded-lg border border-slate-300 bg-white flex items-center justify-center w-full aspect-[210/148.5] print:max-h-none print:w-full overflow-hidden transition hover:border-blue-500 shadow-sm"
+                        className="tin-certificate-frame group relative cursor-pointer rounded-lg border border-slate-300 bg-white flex items-center justify-center w-full h-56 sm:h-64 md:h-72 print:h-[75mm] print:max-h-[78mm] print:w-full overflow-hidden transition hover:border-blue-500 shadow-sm"
                       >
                         <img
                           src={partner.tinCertificateImage}
@@ -1755,13 +1755,13 @@ Generated: ${partner.generatedDate}
                         />
                         <div className="no-print absolute inset-0 bg-slate-900/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center text-white text-xs font-semibold gap-1.5">
                           <ZoomIn className="w-4 h-4" />
-                          <span>View Fullscreen Half-A4 Certificate</span>
+                          <span>View Fullscreen Certificate</span>
                         </div>
                       </div>
                     ) : (
-                      <label className="h-56 sm:h-64 border-2 border-dashed border-slate-300 rounded flex flex-col items-center justify-center text-slate-500 text-xs cursor-pointer hover:border-blue-500 hover:bg-white transition p-4 text-center">
+                      <label className="h-44 sm:h-52 border-2 border-dashed border-slate-300 rounded flex flex-col items-center justify-center text-slate-500 text-xs cursor-pointer hover:border-blue-500 hover:bg-white transition p-4 text-center">
                         <Upload className="w-4 h-4 text-blue-600 mb-2" />
-                        <span className="font-bold text-slate-800 text-sm">Attach GRA TIN Certificate (Half A4)</span>
+                        <span className="font-bold text-slate-800 text-sm">Attach GRA TIN Certificate</span>
                         <span className="text-[11px] text-slate-400 mt-1">Upload scanned GRA tax registration document</span>
                         <input
                           type="file"
@@ -1784,7 +1784,7 @@ Generated: ${partner.generatedDate}
                     {partner.tinCertificateImage && (
                       <div className="no-print mt-2 flex items-center justify-between gap-1 pt-1.5 border-t border-slate-200 text-xs">
                         <span className="text-[11px] text-slate-500 font-sans">
-                          Half A4 paper scale verified. Prints crisp and legible on A4 sheet alongside ID cards.
+                          Fitted in remaining space under ID credentials to ensure same-page printing on Page 1.
                         </span>
                         <div className="flex items-center gap-1.5">
                           <button

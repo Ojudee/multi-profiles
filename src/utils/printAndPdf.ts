@@ -117,8 +117,8 @@ export async function generateAndDownloadPdf(
       idFrames.forEach((frame) => {
         frame.style.width = '100%';
         frame.style.aspectRatio = '85.6 / 53.98';
-        frame.style.height = 'auto';
-        frame.style.maxHeight = 'none';
+        frame.style.height = '155px';
+        frame.style.maxHeight = '165px';
         frame.style.overflow = 'hidden';
         const img = frame.querySelector<HTMLImageElement>('img');
         if (img) {
@@ -130,13 +130,13 @@ export async function generateAndDownloadPdf(
         }
       });
 
-      // Configure TIN Certificate in clone for exact Half-A4 (210mm x 148.5mm, 1.414:1) dimensions
+      // Configure TIN Certificate in clone to fit in remaining space under ID on Page 1
       const tinFrames = clonedEl.querySelectorAll<HTMLElement>('.tin-certificate-frame');
       tinFrames.forEach((frame) => {
         frame.style.width = '100%';
-        frame.style.aspectRatio = '210 / 148.5';
-        frame.style.height = 'auto';
-        frame.style.maxHeight = 'none';
+        frame.style.aspectRatio = 'auto';
+        frame.style.height = '270px';
+        frame.style.maxHeight = '280px';
         frame.style.overflow = 'hidden';
         const img = frame.querySelector<HTMLImageElement>('img');
         if (img) {
@@ -465,8 +465,8 @@ function buildStandaloneDossierHtml(
     .id-frame {
       width: 100%;
       aspect-ratio: 85.6 / 53.98;
-      height: 34mm;
-      max-height: 34mm;
+      height: 38mm;
+      max-height: 40mm;
       overflow: hidden;
       display: flex;
       align-items: center;
@@ -493,7 +493,8 @@ function buildStandaloneDossierHtml(
     }
     .tin-frame {
       width: 100%;
-      aspect-ratio: 210 / 148.5;
+      height: 75mm;
+      max-height: 78mm;
       overflow: hidden;
       display: flex;
       align-items: center;
@@ -562,13 +563,13 @@ function buildStandaloneDossierHtml(
       }
       .id-frame {
         aspect-ratio: 85.6 / 53.98 !important;
-        height: auto !important;
-        max-height: none !important;
+        height: 38mm !important;
+        max-height: 40mm !important;
       }
       .tin-frame {
-        aspect-ratio: 210 / 148.5 !important;
-        height: auto !important;
-        max-height: none !important;
+        height: 75mm !important;
+        max-height: 78mm !important;
+        aspect-ratio: auto !important;
       }
     }
   </style>
