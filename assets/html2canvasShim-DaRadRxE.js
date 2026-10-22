@@ -1,0 +1,1 @@
+var e=async()=>document.createElement(`canvas`);export{e as default};

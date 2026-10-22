@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Company Partner Profile Generator</title>
+    <script>
+      // Single Page Application redirect for GitHub Pages
+      // Encodes the path segment into a query string so index.html can restore it
+      (function() {
+        var pathSegmentsToKeep = 1; // 1 segment for https://user.github.io/repo/
+        var loc = window.location;
+        // Determine whether repo subpath exists
+        var isLocal = loc.hostname === 'localhost' || loc.hostname === '127.0.0.1';
+        var segments = loc.pathname.slice(1).split('/');
+        
+        // If hosted at https://username.github.io/repo-name/
+        var repoName = (!isLocal && loc.hostname.endsWith('github.io') && segments[0]) ? '/' + segments[0] : '';
+        
+        loc.replace(
+          loc.protocol + '//' + loc.hostname + (loc.port ? ':' + loc.port : '') +
+          repoName + '/?' +
+          (loc.pathname.slice(repoName.length).slice(1) ? 'p=' + encodeURIComponent(loc.pathname.slice(repoName.length).slice(1)) + '&' : '') +
+          (loc.search ? 'q=' + encodeURIComponent(loc.search.slice(1)) + '&' : '') +
+          (loc.hash ? 'h=' + encodeURIComponent(loc.hash.slice(1)) : '')
+        );
+      })();
+    </script>
+  </head>
+  <body>
+    <p>Redirecting to Company Partner Profile Generator...</p>
+  </body>
+</html>

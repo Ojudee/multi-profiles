@@ -1,0 +1,6 @@
+{
+  "name": "Univision design and Construction Ltd. - HR & Accounts Portal",
+  "description": "Multi-organizational HR and corporate accounts portal for Univision design and Construction Ltd. with staff credentials inventory, subcontractor payment stages, and financial audit controls.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
