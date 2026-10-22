@@ -124,7 +124,7 @@ export async function generateAndDownloadPdf(
         if (img) {
           img.style.width = '100%';
           img.style.height = '100%';
-          img.style.objectFit = 'contain';
+          img.style.objectFit = 'cover';
           img.style.objectPosition = 'center';
           img.style.display = 'block';
         }
@@ -142,7 +142,7 @@ export async function generateAndDownloadPdf(
         if (img) {
           img.style.width = '100%';
           img.style.height = '100%';
-          img.style.objectFit = 'contain';
+          img.style.objectFit = 'cover';
           img.style.objectPosition = 'center';
           img.style.display = 'block';
         }
@@ -478,7 +478,7 @@ function buildStandaloneDossierHtml(
     .id-frame img {
       width: 100%;
       height: 100%;
-      object-fit: contain;
+      object-fit: cover;
       object-position: center;
       display: block;
     }
@@ -507,7 +507,7 @@ function buildStandaloneDossierHtml(
     .tin-frame img {
       width: 100%;
       height: 100%;
-      object-fit: contain;
+      object-fit: cover;
       object-position: center;
       display: block;
     }

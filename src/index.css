@@ -102,7 +102,7 @@
 
   .id-card-frame img,
   .image-attachment-card img {
-    object-fit: contain !important;
+    object-fit: cover !important;
     object-position: center !important;
     max-height: 34mm !important;
     width: 100% !important;
@@ -127,7 +127,7 @@
 
   .tin-certificate-frame img,
   .tin-certificate-container img {
-    object-fit: contain !important;
+    object-fit: cover !important;
     object-position: center !important;
     max-height: 68mm !important;
     width: 100% !important;

@@ -187,8 +187,8 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
   const [isQuickAutoResizing, setIsQuickAutoResizing] = useState<string | null>(null);
 
   // Statutory ID Card & TIN Certificate fitting modes ('cover' = Edge-to-Edge Statutory Fit, 'contain' = Full Margin Scan)
-  const [idFitMode, setIdFitMode] = useState<'cover' | 'contain'>('contain');
-  const [tinFitMode, setTinFitMode] = useState<'cover' | 'contain'>('contain');
+  const [idFitMode, setIdFitMode] = useState<'cover' | 'contain'>('cover');
+  const [tinFitMode, setTinFitMode] = useState<'cover' | 'contain'>('cover');
 
   // AI Document Scanner Modal state
   const [scannerModal, setScannerModal] = useState<{
