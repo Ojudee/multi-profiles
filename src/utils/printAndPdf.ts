@@ -130,21 +130,21 @@ export async function generateAndDownloadPdf(
         }
       });
 
-      // Configure TIN Certificate in clone to fit in remaining space under ID on Page 1
+      // Configure TIN Certificate in clone to fit in remaining space under ID on Page 1 across full width
       const tinFrames = clonedEl.querySelectorAll<HTMLElement>('.tin-certificate-frame');
       tinFrames.forEach((frame) => {
         frame.style.width = '100%';
-        frame.style.maxWidth = '580px';
-        frame.style.margin = '0 auto';
+        frame.style.maxWidth = '100%';
+        frame.style.margin = '0';
         frame.style.aspectRatio = '210 / 148.5';
-        frame.style.height = '300px';
-        frame.style.maxHeight = '310px';
+        frame.style.height = 'auto';
+        frame.style.maxHeight = '300px';
         frame.style.overflow = 'hidden';
         const img = frame.querySelector<HTMLImageElement>('img');
         if (img) {
           img.style.width = '100%';
           img.style.height = '100%';
-          img.style.objectFit = 'contain';
+          img.style.objectFit = 'cover';
           img.style.objectPosition = 'center';
           img.style.display = 'block';
         }
@@ -495,10 +495,10 @@ function buildStandaloneDossierHtml(
     }
     .tin-frame {
       width: 100%;
-      max-width: 145mm;
-      margin: 0 auto;
-      height: 80mm;
-      max-height: 82mm;
+      max-width: 100%;
+      margin: 0;
+      height: 78mm;
+      max-height: 80mm;
       aspect-ratio: 210 / 148.5;
       overflow: hidden;
       display: flex;
@@ -511,7 +511,7 @@ function buildStandaloneDossierHtml(
     .tin-frame img {
       width: 100%;
       height: 100%;
-      object-fit: contain;
+      object-fit: cover;
       object-position: center;
       display: block;
     }
@@ -573,11 +573,16 @@ function buildStandaloneDossierHtml(
       }
       .tin-frame {
         width: 100% !important;
-        max-width: 145mm !important;
-        height: 80mm !important;
-        max-height: 82mm !important;
+        max-width: 100% !important;
+        height: 78mm !important;
+        max-height: 80mm !important;
         aspect-ratio: 210 / 148.5 !important;
-        margin: 0 auto !important;
+        margin: 0 !important;
+      }
+      .tin-frame img {
+        object-fit: cover !important;
+        width: 100% !important;
+        height: 100% !important;
       }
     }
   </style>

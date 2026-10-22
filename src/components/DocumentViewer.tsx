@@ -187,8 +187,8 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
   const [isQuickAutoResizing, setIsQuickAutoResizing] = useState<string | null>(null);
 
   // Statutory ID Card & TIN Certificate fitting modes ('cover' = Edge-to-Edge Statutory Fit, 'contain' = Full Margin Scan)
-  const [idFitMode, setIdFitMode] = useState<'cover' | 'contain'>('contain');
-  const [tinFitMode, setTinFitMode] = useState<'cover' | 'contain'>('contain');
+  const [idFitMode, setIdFitMode] = useState<'cover' | 'contain'>('cover');
+  const [tinFitMode, setTinFitMode] = useState<'cover' | 'contain'>('cover');
 
   // AI Document Scanner Modal state
   const [scannerModal, setScannerModal] = useState<{
@@ -1008,7 +1008,7 @@ Generated: ${partner.generatedDate}
             <div className="h-2.5 bg-gradient-to-r from-slate-900 via-blue-900 to-slate-800 w-full print:bg-slate-900 shrink-0" />
 
             {/* Inner Content with standard A4 margins */}
-            <div className="p-3.5 sm:p-7 md:p-9 print:px-5 print:py-2 flex-1 flex flex-col justify-between">
+            <div className="p-3.5 sm:p-7 md:p-9 print:p-2.5 flex-1 flex flex-col justify-between">
               <div>
                 {/* 1. Cover / Corporate Header */}
                 <header
@@ -1746,12 +1746,12 @@ Generated: ${partner.generatedDate}
                             partnerId: partner.id,
                           })
                         }
-                        className="tin-certificate-frame group relative cursor-pointer rounded-lg border border-slate-300 bg-white flex items-center justify-center w-full max-w-[660px] mx-auto aspect-[210/148.5] max-h-[300px] sm:max-h-[340px] print:h-[80mm] print:max-h-[82mm] print:max-w-[145mm] overflow-hidden transition hover:border-blue-500 shadow-sm"
+                        className="tin-certificate-frame group relative cursor-pointer rounded-lg border border-slate-300 bg-white flex items-center justify-center w-full aspect-[210/148.5] max-h-[300px] sm:max-h-[340px] print:h-[78mm] print:max-h-[80mm] print:w-full print:max-w-full overflow-hidden transition hover:border-blue-500 shadow-sm"
                       >
                         <img
                           src={partner.tinCertificateImage}
                           alt="TIN Certificate Image"
-                          className="w-full h-full object-contain object-center transition-all duration-200 bg-white"
+                          className={`w-full h-full ${tinFitMode === 'contain' ? 'object-contain' : 'object-cover'} object-center transition-all duration-200 bg-white`}
                         />
                         <div className="no-print absolute inset-0 bg-slate-900/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center text-white text-xs font-semibold gap-1.5">
                           <ZoomIn className="w-4 h-4" />

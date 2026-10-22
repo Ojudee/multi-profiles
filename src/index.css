@@ -56,8 +56,6 @@
     border-radius: 0 !important;
     page-break-after: always !important;
     break-after: page !important;
-    page-break-inside: avoid !important;
-    break-inside: avoid !important;
     overflow: visible !important;
   }
 
@@ -112,14 +110,14 @@
     background: #ffffff !important;
   }
 
-  /* Standardized GRA TIN Certificate: strictly fitted in remaining space under ID on Page 1 */
+  /* Standardized GRA TIN Certificate: strictly fitted in remaining space under ID on Page 1 across full width */
   .tin-certificate-frame {
     width: 100% !important;
-    max-width: 145mm !important;
-    height: 80mm !important;
-    max-height: 82mm !important;
+    max-width: 100% !important;
+    height: 78mm !important;
+    max-height: 80mm !important;
     aspect-ratio: 210 / 148.5 !important;
-    margin: 0 auto !important;
+    margin: 0 !important;
     background: #ffffff !important;
     display: flex !important;
     align-items: center !important;
@@ -130,7 +128,7 @@
 
   .tin-certificate-frame img,
   .tin-certificate-container img {
-    object-fit: contain !important;
+    object-fit: cover !important;
     object-position: center !important;
     max-height: 80mm !important;
     width: 100% !important;
