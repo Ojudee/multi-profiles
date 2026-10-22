@@ -187,8 +187,8 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
   const [isQuickAutoResizing, setIsQuickAutoResizing] = useState<string | null>(null);
 
   // Statutory ID Card & TIN Certificate fitting modes ('cover' = Edge-to-Edge Statutory Fit, 'contain' = Full Margin Scan)
-  const [idFitMode, setIdFitMode] = useState<'cover' | 'contain'>('cover');
-  const [tinFitMode, setTinFitMode] = useState<'cover' | 'contain'>('cover');
+  const [idFitMode, setIdFitMode] = useState<'cover' | 'contain'>('contain');
+  const [tinFitMode, setTinFitMode] = useState<'cover' | 'contain'>('contain');
 
   // AI Document Scanner Modal state
   const [scannerModal, setScannerModal] = useState<{
@@ -1511,7 +1511,7 @@ Generated: ${partner.generatedDate}
                                 partnerId: partner.id,
                               })
                             }
-                            className="id-card-frame group relative cursor-pointer rounded-lg border border-slate-300 bg-white flex items-center justify-center w-full aspect-[85.6/53.98] print:max-h-[38mm] overflow-hidden transition hover:border-blue-500 shadow-2xs"
+                            className="id-card-frame group relative cursor-pointer rounded-lg border border-slate-300 bg-white flex items-center justify-center w-full aspect-[85.6/53.98] print:max-h-none overflow-hidden transition hover:border-blue-500 shadow-2xs"
                           >
                             <img
                               src={partner.idFrontImage}
@@ -1591,7 +1591,7 @@ Generated: ${partner.generatedDate}
                                 partnerId: partner.id,
                               })
                             }
-                            className="id-card-frame group relative cursor-pointer rounded-lg border border-slate-300 bg-white flex items-center justify-center w-full aspect-[85.6/53.98] print:max-h-[38mm] overflow-hidden transition hover:border-blue-500 shadow-2xs"
+                            className="id-card-frame group relative cursor-pointer rounded-lg border border-slate-300 bg-white flex items-center justify-center w-full aspect-[85.6/53.98] print:max-h-none overflow-hidden transition hover:border-blue-500 shadow-2xs"
                           >
                             <img
                               src={partner.idBackImage}
@@ -1746,7 +1746,7 @@ Generated: ${partner.generatedDate}
                             partnerId: partner.id,
                           })
                         }
-                        className="tin-certificate-frame group relative cursor-pointer rounded-lg border border-slate-300 bg-white flex items-center justify-center w-full aspect-[210/148.5] print:max-h-[64mm] print:w-full overflow-hidden transition hover:border-blue-500 shadow-sm"
+                        className="tin-certificate-frame group relative cursor-pointer rounded-lg border border-slate-300 bg-white flex items-center justify-center w-full aspect-[210/148.5] print:max-h-none print:w-full overflow-hidden transition hover:border-blue-500 shadow-sm"
                       >
                         <img
                           src={partner.tinCertificateImage}

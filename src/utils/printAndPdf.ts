@@ -117,14 +117,14 @@ export async function generateAndDownloadPdf(
       idFrames.forEach((frame) => {
         frame.style.width = '100%';
         frame.style.aspectRatio = '85.6 / 53.98';
-        frame.style.height = '34mm';
-        frame.style.maxHeight = '34mm';
+        frame.style.height = 'auto';
+        frame.style.maxHeight = 'none';
         frame.style.overflow = 'hidden';
         const img = frame.querySelector<HTMLImageElement>('img');
         if (img) {
           img.style.width = '100%';
           img.style.height = '100%';
-          img.style.objectFit = 'cover';
+          img.style.objectFit = 'contain';
           img.style.objectPosition = 'center';
           img.style.display = 'block';
         }
@@ -135,14 +135,14 @@ export async function generateAndDownloadPdf(
       tinFrames.forEach((frame) => {
         frame.style.width = '100%';
         frame.style.aspectRatio = '210 / 148.5';
-        frame.style.height = '68mm';
-        frame.style.maxHeight = '70mm';
+        frame.style.height = 'auto';
+        frame.style.maxHeight = 'none';
         frame.style.overflow = 'hidden';
         const img = frame.querySelector<HTMLImageElement>('img');
         if (img) {
           img.style.width = '100%';
           img.style.height = '100%';
-          img.style.objectFit = 'cover';
+          img.style.objectFit = 'contain';
           img.style.objectPosition = 'center';
           img.style.display = 'block';
         }
@@ -478,7 +478,7 @@ function buildStandaloneDossierHtml(
     .id-frame img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
       object-position: center;
       display: block;
     }
@@ -494,8 +494,6 @@ function buildStandaloneDossierHtml(
     .tin-frame {
       width: 100%;
       aspect-ratio: 210 / 148.5;
-      height: 68mm;
-      max-height: 70mm;
       overflow: hidden;
       display: flex;
       align-items: center;
@@ -507,7 +505,7 @@ function buildStandaloneDossierHtml(
     .tin-frame img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
       object-position: center;
       display: block;
     }
@@ -563,12 +561,14 @@ function buildStandaloneDossierHtml(
         display: none !important;
       }
       .id-frame {
-        height: 34mm !important;
-        max-height: 34mm !important;
+        aspect-ratio: 85.6 / 53.98 !important;
+        height: auto !important;
+        max-height: none !important;
       }
       .tin-frame {
-        height: 68mm !important;
-        max-height: 70mm !important;
+        aspect-ratio: 210 / 148.5 !important;
+        height: auto !important;
+        max-height: none !important;
       }
     }
   </style>

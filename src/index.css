@@ -89,8 +89,8 @@
   /* Standardized ID Card Print Measurements (ISO/IEC 7810 ID-1 Calibrated: 85.60 × 53.98 mm) */
   .id-card-frame {
     width: 100% !important;
-    height: 34mm !important;
-    max-height: 34mm !important;
+    height: auto !important;
+    max-height: none !important;
     aspect-ratio: 85.6 / 53.98 !important;
     margin: 0 auto !important;
     background: #ffffff !important;
@@ -102,9 +102,9 @@
 
   .id-card-frame img,
   .image-attachment-card img {
-    object-fit: cover !important;
+    object-fit: contain !important;
     object-position: center !important;
-    max-height: 34mm !important;
+    max-height: none !important;
     width: 100% !important;
     height: 100% !important;
     display: block !important;
@@ -114,8 +114,8 @@
   /* Standardized GRA TIN Certificate Print Measurements: strictly fits with ID on same page */
   .tin-certificate-frame {
     width: 100% !important;
-    height: 68mm !important;
-    max-height: 70mm !important;
+    height: auto !important;
+    max-height: none !important;
     aspect-ratio: 210 / 148.5 !important;
     margin: 0 auto !important;
     background: #ffffff !important;
@@ -127,9 +127,9 @@
 
   .tin-certificate-frame img,
   .tin-certificate-container img {
-    object-fit: cover !important;
+    object-fit: contain !important;
     object-position: center !important;
-    max-height: 68mm !important;
+    max-height: none !important;
     width: 100% !important;
     height: 100% !important;
     display: block !important;
