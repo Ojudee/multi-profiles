@@ -117,14 +117,14 @@ export async function generateAndDownloadPdf(
       idFrames.forEach((frame) => {
         frame.style.width = '100%';
         frame.style.aspectRatio = '85.6 / 53.98';
-        frame.style.height = '155px';
-        frame.style.maxHeight = '165px';
+        frame.style.height = '180px';
+        frame.style.maxHeight = '185px';
         frame.style.overflow = 'hidden';
         const img = frame.querySelector<HTMLImageElement>('img');
         if (img) {
           img.style.width = '100%';
           img.style.height = '100%';
-          img.style.objectFit = 'contain';
+          img.style.objectFit = 'cover';
           img.style.objectPosition = 'center';
           img.style.display = 'block';
         }
@@ -134,9 +134,11 @@ export async function generateAndDownloadPdf(
       const tinFrames = clonedEl.querySelectorAll<HTMLElement>('.tin-certificate-frame');
       tinFrames.forEach((frame) => {
         frame.style.width = '100%';
-        frame.style.aspectRatio = 'auto';
-        frame.style.height = '270px';
-        frame.style.maxHeight = '280px';
+        frame.style.maxWidth = '580px';
+        frame.style.margin = '0 auto';
+        frame.style.aspectRatio = '210 / 148.5';
+        frame.style.height = '300px';
+        frame.style.maxHeight = '310px';
         frame.style.overflow = 'hidden';
         const img = frame.querySelector<HTMLImageElement>('img');
         if (img) {
@@ -465,8 +467,8 @@ function buildStandaloneDossierHtml(
     .id-frame {
       width: 100%;
       aspect-ratio: 85.6 / 53.98;
-      height: 38mm;
-      max-height: 40mm;
+      height: 42mm;
+      max-height: 44mm;
       overflow: hidden;
       display: flex;
       align-items: center;
@@ -478,7 +480,7 @@ function buildStandaloneDossierHtml(
     .id-frame img {
       width: 100%;
       height: 100%;
-      object-fit: contain;
+      object-fit: cover;
       object-position: center;
       display: block;
     }
@@ -493,8 +495,11 @@ function buildStandaloneDossierHtml(
     }
     .tin-frame {
       width: 100%;
-      height: 75mm;
-      max-height: 78mm;
+      max-width: 145mm;
+      margin: 0 auto;
+      height: 80mm;
+      max-height: 82mm;
+      aspect-ratio: 210 / 148.5;
       overflow: hidden;
       display: flex;
       align-items: center;
@@ -563,13 +568,16 @@ function buildStandaloneDossierHtml(
       }
       .id-frame {
         aspect-ratio: 85.6 / 53.98 !important;
-        height: 38mm !important;
-        max-height: 40mm !important;
+        height: 42mm !important;
+        max-height: 44mm !important;
       }
       .tin-frame {
-        height: 75mm !important;
-        max-height: 78mm !important;
-        aspect-ratio: auto !important;
+        width: 100% !important;
+        max-width: 145mm !important;
+        height: 80mm !important;
+        max-height: 82mm !important;
+        aspect-ratio: 210 / 148.5 !important;
+        margin: 0 auto !important;
       }
     }
   </style>

@@ -1511,12 +1511,12 @@ Generated: ${partner.generatedDate}
                                 partnerId: partner.id,
                               })
                             }
-                            className="id-card-frame group relative cursor-pointer rounded-lg border border-slate-300 bg-white flex items-center justify-center w-full aspect-[85.6/53.98] print:h-[38mm] print:max-h-[40mm] overflow-hidden transition hover:border-blue-500 shadow-2xs"
+                            className="id-card-frame group relative cursor-pointer rounded-lg border border-slate-300 bg-white flex items-center justify-center w-full aspect-[85.6/53.98] print:h-[42mm] print:max-h-[44mm] overflow-hidden transition hover:border-blue-500 shadow-2xs"
                           >
                             <img
                               src={partner.idFrontImage}
                               alt="ID Front Image"
-                              className={`w-full h-full ${idFitMode === 'cover' ? 'object-cover' : 'object-contain'} object-center transition-all duration-200 bg-white`}
+                              className="w-full h-full object-cover object-center transition-all duration-200 bg-white"
                             />
                             <div className="no-print absolute inset-0 bg-slate-900/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center text-white text-[10px] font-semibold gap-1">
                               <ZoomIn className="w-3.5 h-3.5" />
@@ -1591,12 +1591,12 @@ Generated: ${partner.generatedDate}
                                 partnerId: partner.id,
                               })
                             }
-                            className="id-card-frame group relative cursor-pointer rounded-lg border border-slate-300 bg-white flex items-center justify-center w-full aspect-[85.6/53.98] print:h-[38mm] print:max-h-[40mm] overflow-hidden transition hover:border-blue-500 shadow-2xs"
+                            className="id-card-frame group relative cursor-pointer rounded-lg border border-slate-300 bg-white flex items-center justify-center w-full aspect-[85.6/53.98] print:h-[42mm] print:max-h-[44mm] overflow-hidden transition hover:border-blue-500 shadow-2xs"
                           >
                             <img
                               src={partner.idBackImage}
                               alt="ID Back Image"
-                              className={`w-full h-full ${idFitMode === 'cover' ? 'object-cover' : 'object-contain'} object-center transition-all duration-200 bg-white`}
+                              className="w-full h-full object-cover object-center transition-all duration-200 bg-white"
                             />
                             <div className="no-print absolute inset-0 bg-slate-900/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center text-white text-[10px] font-semibold gap-1">
                               <ZoomIn className="w-3.5 h-3.5" />
@@ -1746,12 +1746,12 @@ Generated: ${partner.generatedDate}
                             partnerId: partner.id,
                           })
                         }
-                        className="tin-certificate-frame group relative cursor-pointer rounded-lg border border-slate-300 bg-white flex items-center justify-center w-full h-56 sm:h-64 md:h-72 print:h-[75mm] print:max-h-[78mm] print:w-full overflow-hidden transition hover:border-blue-500 shadow-sm"
+                        className="tin-certificate-frame group relative cursor-pointer rounded-lg border border-slate-300 bg-white flex items-center justify-center w-full max-w-[660px] mx-auto aspect-[210/148.5] max-h-[300px] sm:max-h-[340px] print:h-[80mm] print:max-h-[82mm] print:max-w-[145mm] overflow-hidden transition hover:border-blue-500 shadow-sm"
                       >
                         <img
                           src={partner.tinCertificateImage}
                           alt="TIN Certificate Image"
-                          className={`w-full h-full ${tinFitMode === 'cover' ? 'object-cover' : 'object-contain'} object-center transition-all duration-200 bg-white`}
+                          className="w-full h-full object-contain object-center transition-all duration-200 bg-white"
                         />
                         <div className="no-print absolute inset-0 bg-slate-900/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center text-white text-xs font-semibold gap-1.5">
                           <ZoomIn className="w-4 h-4" />
